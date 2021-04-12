@@ -1,26 +1,38 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <main>
+    <router-view></router-view>
+  </main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  export default {
+    name: "App",
+    created() {
+      document.title = "Alien attack";
+    },
+    watch: {
+      "$store.state.winner"() {
+        //When there is a winner, switch to the game over page
+        this.$router.push({ path: "/game-over" });
+      },
+    },
+  };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  body {
+    margin: 0px;
+  }
+  h2,
+  h3 {
+    margin-bottom: 0px;
+  }
+  a {
+    text-decoration: none;
+  }
+  .p-col-12 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
