@@ -1,7 +1,16 @@
 <template>
-  <BaseHealthBar title="Alien Health" :value="alienHealth" />
-  <section style="height: 60vh"></section>
-  <BaseHealthBar title="Your Health" :value="playerHealth" />
+  <BaseHealthBar
+    title="Alien Health"
+    :value="alienHealth"
+    :is-title-first="true"
+    style="margin-top:20px"
+  />
+  <section id="battle-display"></section>
+  <BaseHealthBar
+    title="Your Health"
+    :value="playerHealth"
+    :is-title-first="false"
+  />
 </template>
 
 <script>
@@ -17,3 +26,16 @@
     },
   };
 </script>
+
+<style scoped>
+  #battle-display {
+    height: 60vh;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+    border: 2px solid #6bbfd8;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+</style>

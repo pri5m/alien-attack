@@ -4,16 +4,10 @@
       <h2>Control Panel</h2>
     </div>
     <div class="p-col-12">
-      <Button
-        id="action-button"
-        icon="pi pi-play"
-        label="ATTACK"
-        @click="attackAlien"
-      />
+      <Button icon="pi pi-play" label="ATTACK" @click="attackAlien" />
     </div>
     <div class="p-col-12">
       <Button
-        id="action-button"
         :label="isSpecialAttack ? 'COOL DOWN' : 'SPECIAL ATTACK'"
         :icon="isSpecialAttack ? 'pi pi-lock' : 'pi pi-forward'"
         :disabled="isSpecialAttack"
@@ -21,20 +15,10 @@
       />
     </div>
     <div class="p-col-12">
-      <Button
-        id="action-button"
-        label="HEAL"
-        icon="pi pi-user-plus"
-        @click="healPlayer"
-      />
+      <Button label="HEAL" icon="pi pi-user-plus" @click="healPlayer" />
     </div>
     <div class="p-col-12">
-      <Button
-        id="action-button"
-        label="SURRENDER"
-        icon="pi pi-ban"
-        @click="showModal"
-      />
+      <Button label="SURRENDER" icon="pi pi-ban" @click="showModal" />
     </div>
     <SurrenderModal :open="isModalVisible" @close="closeModal" />
     <div class="p-col-12">
@@ -145,11 +129,7 @@
 </script>
 
 <style scoped>
-  a,
-  #action-button {
+  .p-button {
     width: 70%;
-  }
-  #link-button {
-    width: 100%;
   }
 </style>
