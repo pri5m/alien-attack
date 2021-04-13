@@ -20,7 +20,7 @@
 
 <script>
   import BattleGround from "./BattleGround.vue";
-  import ControlPanel from "./ControlPanel.vue";
+  import ControlPanel from "./control_panel/ControlPanel.vue";
   import BattleLog from "./BattleLog.vue";
   import Splitter from "primevue/splitter";
   import SplitterPanel from "primevue/splitterpanel";

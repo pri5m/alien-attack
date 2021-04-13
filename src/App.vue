@@ -1,15 +1,12 @@
 <template>
   <main>
-    <router-view></router-view>
+    <router-view />
   </main>
 </template>
 
 <script>
   export default {
     name: "App",
-    created() {
-      document.title = "Alien attack";
-    },
     watch: {
       "$store.state.winner"() {
         //When there is a winner, switch to the game over page

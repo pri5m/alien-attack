@@ -29,14 +29,14 @@
       />
     </div>
     <div class="p-col-12">
-      <router-link to="/game-over"
-        ><Button
-          id="link-button"
-          label="SURRENDER"
-          icon="pi pi-ban"
-          @click="surrender"
-      /></router-link>
+      <Button
+        id="action-button"
+        label="SURRENDER"
+        icon="pi pi-ban"
+        @click="showModal"
+      />
     </div>
+    <SurrenderModal :open="isModalVisible" @close="closeModal" />
     <div class="p-col-12">
       <h3 v-if="playerHealth < 15">
         <i
@@ -51,6 +51,7 @@
 
 <script>
   import { mapGetters } from "vuex";
+  import SurrenderModal from "./SurrenderModal.vue";
 
   const getRandomValue = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -58,6 +59,14 @@
 
   export default {
     name: "ControlPanel",
+    data() {
+      return {
+        isModalVisible: false,
+      };
+    },
+    components: {
+      SurrenderModal,
+    },
     computed: {
       ...mapGetters(["isSpecialAttack", "playerHealth"]),
     },
@@ -125,8 +134,11 @@
         });
         this.attackPlayer();
       },
-      surrender() {
-        this.$store.commit("winner", "alien");
+      showModal() {
+        this.isModalVisible = true;
+      },
+      closeModal() {
+        this.isModalVisible = false;
       },
     },
   };
