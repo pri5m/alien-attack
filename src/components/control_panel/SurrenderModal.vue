@@ -11,7 +11,7 @@
     </template>
     <p>
       Are you sure that you want to surrender? This will cause the round to end
-      and the alien to be decared the winner.
+      and the alien to be declared the winner.
     </p>
     <Button
       id="link-button"

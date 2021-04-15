@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 import App from "./App.vue";
+import VueAnime from "./plugins/anime";
 import store from "./store/index.js";
 import Battle from "./components/Battle.vue";
 import GameOver from "./components/GameOver.vue";
@@ -24,8 +25,9 @@ const router = createRouter({
 const app = createApp(App);
 
 app
-  .use(store)
+  .use(VueAnime)
   .use(PrimeVue, { ripple: true })
+  .use(store)
   .use(router)
   .component("Button", Button)
   .mount("#app");

@@ -1,17 +1,13 @@
 <template>
-  <section class="p-d-flex " style="height: 100vh" id="game" else>
-    <Splitter
-      stateKey="mykey"
-      stateStorage="local"
-      style="height: 100%; width: 100%"
-    >
-      <SplitterPanel :size="25">
+  <section class="p-d-flex " style="height: 100vh" id="game">
+    <Splitter style="height: 100%; width: 100%">
+      <SplitterPanel :size="25" :minSize="15">
         <ControlPanel />
       </SplitterPanel>
-      <SplitterPanel :size="50">
+      <SplitterPanel :size="45" :minSize="35">
         <BattleGround />
       </SplitterPanel>
-      <SplitterPanel :size="25">
+      <SplitterPanel :size="30" :minSize="20">
         <BattleLog />
       </SplitterPanel>
     </Splitter>
