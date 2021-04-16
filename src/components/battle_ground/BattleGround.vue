@@ -16,7 +16,7 @@
 
 <script>
   import { mapGetters } from "vuex";
-  import BaseHealthBar from "./ui/BaseHealthBar.vue";
+  import BaseHealthBar from "../ui/BaseHealthBar.vue";
   import BattleDisplay from "./BattleDisplay.vue";
   export default {
     name: "BattleGround",

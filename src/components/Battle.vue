@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import BattleGround from "./BattleGround.vue";
+  import BattleGround from "./battle_ground/BattleGround.vue";
   import ControlPanel from "./control_panel/ControlPanel.vue";
   import BattleLog from "./BattleLog.vue";
   import Splitter from "primevue/splitter";

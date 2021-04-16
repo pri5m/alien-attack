@@ -11,6 +11,7 @@ const store = createStore({
       winner: null,
       logMessages: [],
       rounds: { player: 0, alien: 0 },
+      healCount: 3,
     };
   },
   getters: rootGetters,

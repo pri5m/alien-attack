@@ -5,6 +5,7 @@ export default {
     state.winner = null;
     state.turnCount = 0;
     state.logMessages = [];
+    state.healCount = 3;
   },
   incrementTurn(state) {
     state.turnCount++;
@@ -28,6 +29,7 @@ export default {
     } else {
       state.playerHealth += value;
     }
+    state.healCount--;
   },
   winner(state, value) {
     state.winner = value;

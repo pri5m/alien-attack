@@ -14,4 +14,13 @@ export default {
     }
     return state.alienHealth;
   },
+  healCount(state) {
+    return state.healCount;
+  },
+  isHealingDisabled(state) {
+    if (state.healCount > 0) {
+      return false;
+    }
+    return true;
+  },
 };

@@ -15,7 +15,14 @@
       />
     </div>
     <div class="p-col-12">
-      <Button label="HEAL" icon="pi pi-user-plus" @click="healPlayer" />
+      <Button
+        :label="
+          isHealingDisabled ? 'OUT OF SUPPLIES' : 'HEAL (' + healCount + ')'
+        "
+        :icon="isHealingDisabled ? 'pi pi-lock' : 'pi pi-user-plus'"
+        :disabled="isHealingDisabled"
+        @click="healPlayer"
+      />
     </div>
     <div class="p-col-12">
       <Button label="SURRENDER" icon="pi pi-ban" @click="showModal" />
@@ -52,7 +59,12 @@
       SurrenderModal,
     },
     computed: {
-      ...mapGetters(["isSpecialAttack", "playerHealth"]),
+      ...mapGetters([
+        "isSpecialAttack",
+        "playerHealth",
+        "healCount",
+        "isHealingDisabled",
+      ]),
     },
     watch: {
       "$store.state.playerHealth"(value) {
@@ -95,7 +107,7 @@
         });
       },
       specialAttackAlien() {
-        const attackValue = getRandomValue(10, 25);
+        const attackValue = getRandomValue(12, 22);
         this.$store.commit("incrementTurn");
         this.$store.commit("attackAlien", attackValue);
         this.$store.commit({
@@ -107,7 +119,7 @@
         this.attackPlayer();
       },
       healPlayer() {
-        const healValue = getRandomValue(8, 20);
+        const healValue = getRandomValue(15, 25);
         this.$store.commit("incrementTurn");
         this.$store.commit("healPlayer", healValue);
         this.$store.commit({
