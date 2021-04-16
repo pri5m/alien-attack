@@ -1,26 +1,20 @@
 export default {
-  isSpecialAttack(state) {
-    return state.turnCount % 3 !== 0;
+  alienHealth(state) {
+    return state.alienHealth < 0 ? 0 : state.alienHealth;
   },
   playerHealth(state) {
-    if (state.playerHealth < 0) {
-      return 0;
-    }
-    return state.playerHealth;
+    return state.playerHealth < 0 ? 0 : state.playerHealth;
   },
-  alienHealth(state) {
-    if (state.alienHealth < 0) {
-      return 0;
-    }
-    return state.alienHealth;
+  specialAttackCountdown(state) {
+    return state.specialAttackCountdown;
+  },
+  isSpecialAttack(state) {
+    return state.specialAttackCountdown == 0 ? true : false;
   },
   healCount(state) {
     return state.healCount;
   },
-  isHealingDisabled(state) {
-    if (state.healCount > 0) {
-      return false;
-    }
-    return true;
+  isHealingEnabled(state) {
+    return state.healCount > 0 ? true : false;
   },
 };

@@ -8,19 +8,23 @@
     </div>
     <div class="p-col-12">
       <Button
-        :label="isSpecialAttack ? 'COOL DOWN' : 'SPECIAL ATTACK'"
-        :icon="isSpecialAttack ? 'pi pi-lock' : 'pi pi-forward'"
-        :disabled="isSpecialAttack"
+        :label="
+          isSpecialAttack
+            ? 'SPECIAL ATTACK'
+            : 'COOLDOWN (' + specialAttackCountdown + ')'
+        "
+        :icon="isSpecialAttack ? 'pi pi-forward' : 'pi pi-lock'"
+        :disabled="!isSpecialAttack"
         @click="specialAttackAlien"
       />
     </div>
     <div class="p-col-12">
       <Button
         :label="
-          isHealingDisabled ? 'OUT OF SUPPLIES' : 'HEAL (' + healCount + ')'
+          isHealingEnabled ? 'HEAL (' + healCount + ')' : 'OUT OF SUPPLIES'
         "
-        :icon="isHealingDisabled ? 'pi pi-lock' : 'pi pi-user-plus'"
-        :disabled="isHealingDisabled"
+        :icon="isHealingEnabled ? 'pi pi-user-plus' : 'pi pi-lock'"
+        :disabled="!isHealingEnabled"
         @click="healPlayer"
       />
     </div>
@@ -42,11 +46,8 @@
 
 <script>
   import { mapGetters } from "vuex";
+  import { randomValue } from "../../utils/utils";
   import SurrenderModal from "./SurrenderModal.vue";
-
-  const getRandomValue = (min, max) => {
-    return Math.floor(Math.random() * (max - min)) + min;
-  };
 
   export default {
     name: "ControlPanel",
@@ -61,9 +62,10 @@
     computed: {
       ...mapGetters([
         "isSpecialAttack",
+        "specialAttackCountdown",
         "playerHealth",
         "healCount",
-        "isHealingDisabled",
+        "isHealingEnabled",
       ]),
     },
     watch: {
@@ -83,20 +85,8 @@
       },
     },
     methods: {
-      attackAlien() {
-        const attackValue = getRandomValue(5, 12);
-        this.$store.commit("incrementTurn");
-        this.$store.commit("attackAlien", attackValue);
-        this.$store.commit({
-          type: "addLogMessage",
-          who: "player",
-          what: "attack",
-          value: attackValue,
-        });
-        this.attackPlayer();
-      },
       attackPlayer() {
-        const attackValue = getRandomValue(8, 15);
+        const attackValue = randomValue(8, 15);
         this.$store.commit("incrementTurn");
         this.$store.commit("attackPlayer", attackValue);
         this.$store.commit({
@@ -106,10 +96,30 @@
           value: attackValue,
         });
       },
-      specialAttackAlien() {
-        const attackValue = getRandomValue(12, 22);
+      attackAlien() {
+        const attackValue = randomValue(5, 12);
         this.$store.commit("incrementTurn");
-        this.$store.commit("attackAlien", attackValue);
+        this.$store.commit({
+          type: "attackAlien",
+          value: attackValue,
+          isSpecialAttack: false,
+        });
+        this.$store.commit({
+          type: "addLogMessage",
+          who: "player",
+          what: "attack",
+          value: attackValue,
+        });
+        this.attackPlayer();
+      },
+      specialAttackAlien() {
+        const attackValue = randomValue(12, 22);
+        this.$store.commit("incrementTurn");
+        this.$store.commit({
+          type: "attackAlien",
+          value: attackValue,
+          isSpecialAttack: true,
+        });
         this.$store.commit({
           type: "addLogMessage",
           who: "player",
@@ -119,7 +129,7 @@
         this.attackPlayer();
       },
       healPlayer() {
-        const healValue = getRandomValue(15, 25);
+        const healValue = randomValue(15, 25);
         this.$store.commit("incrementTurn");
         this.$store.commit("healPlayer", healValue);
         this.$store.commit({

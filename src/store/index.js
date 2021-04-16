@@ -12,6 +12,7 @@ const store = createStore({
       logMessages: [],
       rounds: { player: 0, alien: 0 },
       healCount: 3,
+      specialAttackCountdown: 0,
     };
   },
   getters: rootGetters,
