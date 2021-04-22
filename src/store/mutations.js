@@ -24,7 +24,6 @@ export default {
     state.alienHealth -= payload.value;
     if (payload.isSpecialAttack) {
       state.specialAttackCountdown = randomValue(4, 6);
-      console.log("COUNT " + state.specialAttackCountdown);
     }
   },
   healPlayer(state, value) {

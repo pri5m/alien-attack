@@ -3,7 +3,7 @@
 ## Project setup
 
 ```
-npm install
+npm ci
 ```
 
 ### Compiles and hot-reloads for development
@@ -18,6 +18,12 @@ URL: http://localhost:8080/battle
 
 ```
 npm run build
+```
+
+### Run your unit tests
+
+```
+npm run test:unit
 ```
 
 ### Customize configuration
