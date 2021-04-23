@@ -63,21 +63,22 @@
       ...mapGetters([
         "isSpecialAttack",
         "specialAttackCountdown",
+        "alienHealth",
         "playerHealth",
         "healCount",
         "isHealingEnabled",
       ]),
     },
     watch: {
-      "$store.state.playerHealth"(value) {
-        if (value <= 0 && this.$store.getters.alienHealth <= 0) {
+      playerHealth(value) {
+        if (value <= 0 && this.alienHealth <= 0) {
           this.$store.commit("winner", "draw");
         } else if (value <= 0) {
           this.$store.commit("winner", "alien");
         }
       },
-      "$store.state.alienHealth"(value) {
-        if (value <= 0 && this.$store.getters.playerHealth <= 0) {
+      alienHealth(value) {
+        if (value <= 0 && this.playerHealth <= 0) {
           this.$store.commit("winner", "draw");
         } else if (value <= 0) {
           this.$store.commit("winner", "player");

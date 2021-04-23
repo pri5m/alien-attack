@@ -8,12 +8,12 @@
             <h2>Round Over!</h2>
           </template>
           <template #content>
-            <h3 v-if="$store.state.winner === 'alien'">You lost!</h3>
-            <h3 v-else-if="$store.state.winner === 'player'">You won!</h3>
+            <h3 v-if="winner === 'alien'">You lost!</h3>
+            <h3 v-else-if="winner === 'player'">You won!</h3>
             <h3 v-else>It's a draw!</h3>
             <h3>
-              Player: {{ $store.state.rounds.player }} Alien:
-              {{ $store.state.rounds.alien }}
+              Player: {{ rounds.player }} Alien:
+              {{ rounds.alien }}
             </h3>
           </template>
           <template #footer>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+  import { mapGetters } from "vuex";
   import Card from "primevue/card";
 
   export default {
@@ -43,6 +44,9 @@
       startRound() {
         this.$store.commit("newRound");
       },
+    },
+    computed: {
+      ...mapGetters(["winner", "rounds"]),
     },
   };
 </script>

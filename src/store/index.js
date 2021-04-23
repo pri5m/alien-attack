@@ -7,7 +7,6 @@ const store = createStore({
     return {
       playerHealth: 100,
       alienHealth: 100,
-      turnCount: 0,
       winner: null,
       logMessages: [],
       rounds: { player: 0, alien: 0 },

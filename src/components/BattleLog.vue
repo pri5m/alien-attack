@@ -6,15 +6,15 @@
     <div class="p-col-12">
       <h3>
         <span class="log--player">Player</span>:
-        {{ $store.state.rounds.player }}
+        {{ rounds.player }}
         <span class="log--alien">Alien</span>:
-        {{ $store.state.rounds.alien }}
+        {{ rounds.alien }}
       </h3>
     </div>
   </div>
   <ScrollPanel class="log" style="height:75vh; background-color: #251a36;">
     <ul>
-      <li v-for="(logMessage, index) in $store.state.logMessages" :key="index">
+      <li v-for="(logMessage, index) in logMessages" :key="index">
         <span
           :class="{
             'log--player': logMessage.actionBy === 'player',
@@ -39,11 +39,15 @@
 </template>
 
 <script>
+  import { mapGetters } from "vuex";
   import ScrollPanel from "primevue/scrollpanel";
   export default {
     name: "BattleLog",
     components: {
       ScrollPanel,
+    },
+    computed: {
+      ...mapGetters(["logMessages", "winner", "rounds"]),
     },
   };
 </script>
