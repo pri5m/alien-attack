@@ -87,7 +87,6 @@
     methods: {
       attackPlayer() {
         const attackValue = randomValue(8, 15);
-        this.$store.commit("incrementTurn");
         this.$store.commit("attackPlayer", attackValue);
         this.$store.commit({
           type: "addLogMessage",
@@ -98,7 +97,6 @@
       },
       attackAlien() {
         const attackValue = randomValue(5, 12);
-        this.$store.commit("incrementTurn");
         this.$store.commit({
           type: "attackAlien",
           value: attackValue,
@@ -114,7 +112,6 @@
       },
       specialAttackAlien() {
         const attackValue = randomValue(12, 22);
-        this.$store.commit("incrementTurn");
         this.$store.commit({
           type: "attackAlien",
           value: attackValue,
@@ -130,7 +127,6 @@
       },
       healPlayer() {
         const healValue = randomValue(15, 25);
-        this.$store.commit("incrementTurn");
         this.$store.commit("healPlayer", healValue);
         this.$store.commit({
           type: "addLogMessage",

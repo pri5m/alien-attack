@@ -10,9 +10,6 @@ export default {
     state.healCount = 3;
     state.specialAttackCountdown = 0;
   },
-  incrementTurn(state) {
-    state.turnCount++;
-  },
   addLogMessage(state, payload) {
     state.logMessages.unshift({
       actionBy: payload.who,
