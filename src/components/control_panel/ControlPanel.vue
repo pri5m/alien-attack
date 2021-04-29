@@ -49,6 +49,8 @@
   import { randomValue } from "../../utils/utils";
   import SurrenderModal from "./SurrenderModal.vue";
 
+  const attackInterval = 800;
+
   export default {
     name: "ControlPanel",
     data() {
@@ -109,7 +111,9 @@
           what: "attack",
           value: attackValue,
         });
-        this.attackPlayer();
+        setTimeout(() => {
+          this.attackPlayer();
+        }, attackInterval);
       },
       specialAttackAlien() {
         const attackValue = randomValue(12, 22);
@@ -124,7 +128,9 @@
           what: "attack",
           value: attackValue,
         });
-        this.attackPlayer();
+        setTimeout(() => {
+          this.attackPlayer();
+        }, attackInterval);
       },
       healPlayer() {
         const healValue = randomValue(15, 25);
@@ -135,7 +141,9 @@
           what: "heal",
           value: healValue,
         });
-        this.attackPlayer();
+        setTimeout(() => {
+          this.attackPlayer();
+        }, attackInterval);
       },
       showModal() {
         this.isModalVisible = true;
