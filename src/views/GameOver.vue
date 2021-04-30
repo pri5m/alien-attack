@@ -46,7 +46,7 @@
       },
     },
     computed: {
-      ...mapGetters(["winner", "rounds"]),
+      ...mapGetters([Object.freeze("winner"), Object.freeze("rounds")]),
     },
   };
 </script>
