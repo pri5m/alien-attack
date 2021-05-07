@@ -12,6 +12,7 @@ const store = createStore({
       rounds: { player: 0, alien: 0 },
       healCount: 3,
       specialAttackCountdown: 0,
+      ongoingRound: false,
     };
   },
   getters: rootGetters,

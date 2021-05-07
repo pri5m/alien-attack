@@ -18,12 +18,14 @@ export default {
     });
   },
   attackAlien(state, payload) {
+    state.ongoingRound = true;
     state.alienHealth -= payload.value;
     if (payload.isSpecialAttack) {
       state.specialAttackCountdown = randomValue(4, 6);
     }
   },
   healPlayer(state, value) {
+    state.ongoingRound = true;
     if (state.playerHealth + value > 100) {
       state.playerHealth = 100;
     } else {
@@ -36,7 +38,9 @@ export default {
     if (state.specialAttackCountdown > 0) {
       state.specialAttackCountdown--;
     }
-    // Turn ends
+  },
+  finishRound(state) {
+    state.ongoingRound = false;
   },
   winner(state, value) {
     state.winner = value;

@@ -5,7 +5,7 @@
         <ControlPanel />
       </SplitterPanel>
       <SplitterPanel :size="45" :minSize="35">
-        <BattleGround />
+        <BattleDisplay />
       </SplitterPanel>
       <SplitterPanel :size="30" :minSize="20">
         <BattleLog />
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import BattleGround from "../components/battle_ground/BattleGround.vue";
+  import BattleDisplay from "../components/battle_ground/BattleDisplay.vue";
   import ControlPanel from "../components/control_panel/ControlPanel.vue";
   import BattleLog from "../components/BattleLog.vue";
   import Splitter from "primevue/splitter";
@@ -24,7 +24,7 @@
   export default {
     name: "Battle",
     components: {
-      BattleGround,
+      BattleDisplay,
       ControlPanel,
       BattleLog,
       Splitter,

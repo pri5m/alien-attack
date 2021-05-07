@@ -4,7 +4,12 @@
       <h2>Control Panel</h2>
     </div>
     <div class="p-col-12">
-      <Button icon="pi pi-play" label="ATTACK" @click="attackAlien" />
+      <Button
+        icon="pi pi-play"
+        label="ATTACK"
+        @click="attackAlien"
+        :disabled="ongoingRound"
+      />
     </div>
     <div class="p-col-12">
       <Button
@@ -14,7 +19,7 @@
             : 'COOLDOWN (' + specialAttackCountdown + ')'
         "
         :icon="isSpecialAttack ? 'pi pi-forward' : 'pi pi-lock'"
-        :disabled="!isSpecialAttack"
+        :disabled="!isSpecialAttack || ongoingRound"
         @click="specialAttackAlien"
       />
     </div>
@@ -24,12 +29,17 @@
           isHealingEnabled ? 'HEAL (' + healCount + ')' : 'OUT OF SUPPLIES'
         "
         :icon="isHealingEnabled ? 'pi pi-user-plus' : 'pi pi-lock'"
-        :disabled="!isHealingEnabled"
+        :disabled="!isHealingEnabled || ongoingRound"
         @click="healPlayer"
       />
     </div>
     <div class="p-col-12">
-      <Button label="SURRENDER" icon="pi pi-ban" @click="showModal" />
+      <Button
+        label="SURRENDER"
+        icon="pi pi-ban"
+        @click="showModal"
+        :disabled="ongoingRound"
+      />
     </div>
     <SurrenderModal :open="isModalVisible" @close="closeModal" />
     <div class="p-col-12">
@@ -69,6 +79,7 @@
         "playerHealth",
         "healCount",
         "isHealingEnabled",
+        "ongoingRound",
       ]),
     },
     watch: {
@@ -113,6 +124,10 @@
         });
         setTimeout(() => {
           this.attackPlayer();
+          setTimeout(() => {
+            // Timeout added to finish round after player's healthbar animation completes
+            this.$store.commit("finishRound");
+          }, attackInterval);
         }, attackInterval);
       },
       specialAttackAlien() {
@@ -130,6 +145,9 @@
         });
         setTimeout(() => {
           this.attackPlayer();
+          setTimeout(() => {
+            this.$store.commit("finishRound");
+          }, attackInterval);
         }, attackInterval);
       },
       healPlayer() {
@@ -143,6 +161,9 @@
         });
         setTimeout(() => {
           this.attackPlayer();
+          setTimeout(() => {
+            this.$store.commit("finishRound");
+          }, attackInterval);
         }, attackInterval);
       },
       showModal() {
