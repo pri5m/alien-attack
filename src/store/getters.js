@@ -20,8 +20,8 @@ export default {
   specialAttackCountdown(state) {
     return state.specialAttackCountdown;
   },
-  ongoingRound(state) {
-    return state.ongoingRound;
+  isOngoingRound(state) {
+    return state.isOngoingRound;
   },
   isSpecialAttack(state) {
     return state.specialAttackCountdown == 0 ? true : false;

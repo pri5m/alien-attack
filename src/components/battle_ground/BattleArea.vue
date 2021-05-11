@@ -8,6 +8,11 @@
 <script>
   export default {
     name: "BattleArea",
+    data() {
+      return {
+        stars: [],
+      };
+    },
     methods: {
       playerMovement() {
         this.$anime({
@@ -44,15 +49,16 @@
 
 <style scoped>
   #battle-area {
+    position: relative;
     height: 60vh;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    background-image: radial-gradient(rgb(55, 65, 35), transparent 80%);
     background-color: black;
     border: 2px solid #6bbfd8;
     margin-top: 20px;
     margin-bottom: 30px;
-    position: relative;
   }
 
   #alien {

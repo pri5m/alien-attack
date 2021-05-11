@@ -8,7 +8,7 @@
         icon="pi pi-play"
         label="ATTACK"
         @click="attackAlien"
-        :disabled="ongoingRound"
+        :disabled="isOngoingRound"
       />
     </div>
     <div class="p-col-12">
@@ -19,7 +19,7 @@
             : 'COOLDOWN (' + specialAttackCountdown + ')'
         "
         :icon="isSpecialAttack ? 'pi pi-forward' : 'pi pi-lock'"
-        :disabled="!isSpecialAttack || ongoingRound"
+        :disabled="!isSpecialAttack || isOngoingRound"
         @click="specialAttackAlien"
       />
     </div>
@@ -29,7 +29,7 @@
           isHealingEnabled ? 'HEAL (' + healCount + ')' : 'OUT OF SUPPLIES'
         "
         :icon="isHealingEnabled ? 'pi pi-user-plus' : 'pi pi-lock'"
-        :disabled="!isHealingEnabled || ongoingRound"
+        :disabled="!isHealingEnabled || isOngoingRound"
         @click="healPlayer"
       />
     </div>
@@ -38,7 +38,7 @@
         label="SURRENDER"
         icon="pi pi-ban"
         @click="showModal"
-        :disabled="ongoingRound"
+        :disabled="isOngoingRound"
       />
     </div>
     <SurrenderModal :open="isModalVisible" @close="closeModal" />
@@ -79,7 +79,7 @@
         "playerHealth",
         "healCount",
         "isHealingEnabled",
-        "ongoingRound",
+        "isOngoingRound",
       ]),
     },
     watch: {
